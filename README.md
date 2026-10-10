@@ -204,10 +204,10 @@ The `database/schema.sql` populates four demo accounts (default password for all
 
 | Role | Name | Email | Password |
 | :--- | :--- | :--- | :--- |
-| `USER` | John Student | `john.student@campus.edu` | `Password@123` |
-| `USER` | Alice Faculty | `alice.faculty@campus.edu` | `Password@123` |
-| `MAINTENANCE_STAFF` | Bob Technician | `bob.tech@campus.edu` | `Password@123` |
-| `MAINTENANCE_STAFF` | Sarah Supervisor | `sarah.staff@campus.edu` | `Password@123` |
+| `USER` | John Student | `john.student@campus.edu` | `hellooooooo` |
+| `USER` | Alice Faculty | `alice.faculty@campus.edu` | `hellooooooo` |
+| `MAINTENANCE_STAFF` | Bob Technician | `bob.tech@campus.edu` | `hellooooooo` |
+| `MAINTENANCE_STAFF` | Sarah Supervisor | `sarah.staff@campus.edu` | `hellooooooo` |
 
 ---
 
