@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Maintenance System — Authentication</title>
+  <link rel="icon" type="image/svg+xml" href="/images/campuscare-mark.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo-badge">CM</div>
+        <h1 class="auth-title">Campus Maintenance System</h1>
+        <p class="auth-subtitle">Accountability & Maintenance Management System</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="tab-login" class="auth-tab active">Account Login</button>
+        <button id="tab-register" class="auth-tab">New User Registration</button>
+      </div>
+
+      <div class="auth-body">
+        <!-- LOGIN FORM -->
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Campus Email</label>
+            <input type="email" id="login-email" class="form-control" placeholder="user@campus.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <div class="password-input-group">
+              <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+              <button type="button" id="toggle-password" class="toggle-password">Show</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem; padding: 0.75rem;">
+            Login
+          </button>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="register-form" style="display: none;">
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="e.g. John Student" required minlength="2">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Campus Email</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="student@campus.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="At least 6 characters" required minlength="6">
+          </div>
+
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: -0.5rem; margin-bottom: 1rem;">
+            * Note: Public registration creates a standard USER account. Maintenance staff accounts are provisioned administratively.
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+            Create User Account
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

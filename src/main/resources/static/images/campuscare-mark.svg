@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- CampusCare Architectural Arch & Accountability Emblem -->
+  <style>
+    .brand-dark { stroke: #211014; }
+    .brand-crimson { stroke: #8E2639; }
+    @media (prefers-color-scheme: dark) {
+      .brand-dark { stroke: #F5EFEB; }
+      .brand-crimson { stroke: #E04D68; }
+    }
+  </style>
+  <!-- Outer Arch -->
+  <path class="brand-dark" d="M8 44V22C8 13.163 15.163 6 24 6C32.837 6 40 13.163 40 22V44" stroke="#211014" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Inner Arch -->
+  <path class="brand-crimson" d="M16 44V24C16 19.582 19.582 16 24 16C28.418 16 32 19.582 32 24V44" stroke="#8E2639" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Foundation Lintel -->
+  <path class="brand-dark" d="M4 44H44" stroke="#211014" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Accountability Checkmark -->
+  <path class="brand-crimson" d="M19 28L23 32L32 21" stroke="#8E2639" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

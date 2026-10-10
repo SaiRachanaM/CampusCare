@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" fill="none">
+  <!-- Architectural Campus Arch & Accountability Check Emblem -->
+  <g transform="translate(6, 6)">
+    <path d="M4 38V18C4 9.163 11.163 2 20 2C28.837 2 36 9.163 36 18V38" stroke="#211014" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 38V20C12 15.582 15.582 12 20 12C24.418 12 28 15.582 28 20V38" stroke="#8E2639" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M0 38H40" stroke="#211014" stroke-width="3" stroke-linecap="round"/>
+    <path d="M15 24L19 28L28 17" stroke="#8E2639" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="60" y="27" font-family="'Newsreader', 'DM Serif Display', Georgia, serif" font-size="22" font-weight="600" fill="#211014" letter-spacing="-0.3">Campus<tspan fill="#8E2639">Care</tspan></text>
+  <text x="60" y="42" font-family="'Manrope', -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#76676A" letter-spacing="1.2">CAMPUS ACCOUNTABILITY</text>
+</svg>

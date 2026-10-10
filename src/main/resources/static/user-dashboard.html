@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Portal — Campus Maintenance System</title>
+  <link rel="icon" type="image/svg+xml" href="/images/campuscare-mark.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-icon">CM</div>
+      <div class="brand-title">Campus Maintenance</div>
+    </div>
+    <div class="nav-links">
+      <div class="user-profile-badge">
+        <span>👋 Welcome, <strong id="user-name-display">User</strong></span>
+      </div>
+      <button onclick="handleLogout()" class="btn-logout">Logout</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1 style="font-size: 1.6rem; font-weight: 800;">My Complaints Dashboard</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Track your maintenance requests and view real-time status timelines</p>
+      </div>
+      <button onclick="openModal('report-modal')" class="btn-primary">
+        + Report a Problem
+      </button>
+    </div>
+
+    <!-- Summary Metrics -->
+    <div class="dashboard-grid">
+      <div class="metric-card">
+        <div class="metric-header">Total Reported</div>
+        <div id="metric-total" class="metric-value">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-header">Pending / Assigned</div>
+        <div id="metric-pending" class="metric-value" style="color: var(--status-assigned-fg);">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-header">In Progress</div>
+        <div id="metric-inprogress" class="metric-value" style="color: var(--primary-blue);">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-header">Completed / Closed</div>
+        <div id="metric-closed" class="metric-value" style="color: var(--status-completed-fg);">0</div>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container">
+      <div class="table-header-toolbar">
+        <div class="table-title">Recent Maintenance Requests</div>
+        <div class="controls-group">
+          <input type="text" id="search-complaint" class="input-search" placeholder="Search title, issue, building...">
+          <select id="filter-status" class="select-filter">
+            <option value="">All Statuses</option>
+            <option value="REPORTED">REPORTED</option>
+            <option value="ASSIGNED">ASSIGNED</option>
+            <option value="IN_PROGRESS">IN_PROGRESS</option>
+            <option value="COMPLETED">COMPLETED</option>
+            <option value="CLOSED">CLOSED</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Ticket ID</th>
+            <th>Issue Title & Description</th>
+            <th>Location</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="complaints-tbody">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- REPORT PROBLEM MODAL -->
+  <div id="report-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Report Maintenance Problem</h2>
+        <button class="btn-close" onclick="closeModal('report-modal')">&times;</button>
+      </div>
+      <form id="report-problem-form">
+        <div class="form-group">
+          <label class="form-label" for="report-location">Campus Location *</label>
+          <select id="report-location" class="form-control" required>
+            <!-- Loaded dynamically -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="report-asset">Specific Asset (Optional)</label>
+          <select id="report-asset" class="form-control" disabled>
+            <option value="">-- Optional: Select Location First --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="report-title">Issue Title *</label>
+          <input type="text" id="report-title" class="form-control" placeholder="e.g. Projector Display Flicker" required minlength="3">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="report-priority">Priority *</label>
+          <select id="report-priority" class="form-control" required>
+            <option value="LOW">LOW (Standard SLA - 7 days)</option>
+            <option value="MEDIUM" selected>MEDIUM (Moderate SLA - 5 days)</option>
+            <option value="HIGH">HIGH (High Priority SLA - 48 hours)</option>
+            <option value="URGENT">URGENT (Critical SLA - 24 hours)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="report-issue">Detailed Problem Description *</label>
+          <textarea id="report-issue" class="form-control" rows="4" placeholder="Describe the maintenance defect, symptoms, and exact area..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn-secondary" onclick="closeModal('report-modal')">Cancel</button>
+          <button type="submit" class="btn-primary">Submit Complaint</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- COMPLAINT DETAIL & TIMELINE MODAL -->
+  <div id="detail-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Ticket Details <span id="detail-id" style="color:var(--primary-blue);"></span></h2>
+        <button class="btn-close" onclick="closeModal('detail-modal')">&times;</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <h3 id="detail-title" style="font-size: 1.1rem; font-weight: 700;"></h3>
+          <p id="detail-issue" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem;"></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; background: var(--bg-main); padding: 1rem; border-radius: var(--radius-sm); font-size: 0.85rem;">
+          <div><strong>Location:</strong> <span id="detail-location"></span></div>
+          <div><strong>Asset:</strong> <span id="detail-asset"></span></div>
+          <div><strong>Status:</strong> <span id="detail-status" class="badge"></span></div>
+          <div><strong>Priority:</strong> <span id="detail-priority" class="badge"></span></div>
+          <div><strong>Assigned Technician:</strong> <span id="detail-assigned"></span></div>
+          <div><strong>Target SLA Due:</strong> <span id="detail-due"></span></div>
+        </div>
+
+        <!-- REPAIR DETAILS (If Logged) -->
+        <div id="detail-repair-box" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: var(--radius-sm); font-size: 0.85rem;">
+          <h4 style="color: #15803d; font-weight: 700; margin-bottom: 0.35rem;">🔧 Repair Work Record</h4>
+          <div><strong>Description:</strong> <span id="repair-desc"></span></div>
+          <div><strong>Cost:</strong> <span id="repair-cost"></span> | <strong>Technician:</strong> <span id="repair-tech"></span></div>
+          <div><strong>Repair Date:</strong> <span id="repair-date"></span></div>
+        </div>
+
+        <!-- STATUS TIMELINE -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-top: 0.5rem;">Audit & Status History Timeline</h4>
+          <div id="detail-timeline" class="timeline-container">
+            <!-- Timeline items rendered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/user-dashboard.js"></script>
+</body>
+</html>

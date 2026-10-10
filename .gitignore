@@ -1,0 +1,47 @@
+# Target and Build outputs
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Environment and Secret files
+.env
+*.env.local
+
+# Operating System files
+DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Java build output
+target/
+
+# Local database dumps and backups
+*.sql.bak
+*.dump
+*.bak
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.jks
+
+# Local backup of the old frontend
+backup_existing_frontend/
